@@ -1,0 +1,2 @@
+# FlaskToken
+itsdangerous库token的实现小demo
