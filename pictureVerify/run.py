@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 #coding=utf-8
 import os
 import random
@@ -15,14 +15,17 @@ class picture:
         self.color="white"
         self.font = ImageFont.truetype("C:\Windows\Fonts\Arial.ttf", 36) #设置字体大小
 
-    def randChar(self):
+    @staticmethod
+    def randChar():
         basic='23456789abcdefghijklmnpqrstwxyzABCDEFGHIJKLMNPQRSTWXYZ'
         return basic[random.randint(0,len(basic)-1)] #随机字符
 
-    def randBdColor(self):
+    @staticmethod
+    def randBdColor():
         return (random.randint(64,255),random.randint(64,255),random.randint(64,255)) #背景
 
-    def randTextColor(self):
+    @staticmethod
+    def randTextColor():
         return (random.randint(32, 127), random.randint(32, 127), random.randint(32, 127)) #随机颜色
 
     def proPicture(self):
@@ -41,13 +44,13 @@ class picture:
                 if tmp>30: #调整干扰点数量
                     drawObject.point((x,y),self.randBdColor())
 
-        randchar=''  
+        randchar=''
         for i in range(5):
             rand=self.randChar()
             randchar+=rand
             drawObject.text([50*i+10,10],rand,self.randTextColor(),font=self.font) #写入字符
 
-        new_image = new_image.filter(ImageFilter.SHARPEN) # 滤镜    
+        new_image = new_image.filter(ImageFilter.SHARPEN) # 滤镜
 
         return new_image,randchar
 @app.route('/<filename>')
@@ -60,7 +63,7 @@ def index():
     image,code=test.proPicture()
     image.save('new.jpg')
     url="http://127.0.0.1:5000/new.jpg"
-    return '<img src='+url+' /><br/>'+"图中的code为："+code 
+    return '<img src='+url+' /><br/>'+"图中的code为："+code
     #这里有缓存,需要CTRL+F5才会有效果
 
 if __name__=="__main__":
