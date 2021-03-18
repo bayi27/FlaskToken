@@ -9,7 +9,7 @@ itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
 olefile==0.44
-Pillow==4.3.0
+Pillow==8.1.1
 post==0.0.0
 public==0.0.0
 query-string==0.0.0
